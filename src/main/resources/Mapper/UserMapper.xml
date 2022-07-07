@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dal.user.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.dal.user.model.User">
+        <result column="UserID" jdbcType="VARCHAR" property="UserID" />
+        <result column="UserName" jdbcType="VARCHAR" property="UserName" />
+        <result column="UserPassword" jdbcType="VARCHAR" property="UserPassword" />
+        <result column="UserTelephone" jdbcType="VARCHAR" property="UserTelephone" />
+        <result column="UserAddress" jdbcType="VARCHAR" property="UserAddress" />
+        <result column="UserGender" jdbcType="VARCHAR" property="UserGender" />
+        <result column="Family_FamilyID" jdbcType="VARCHAR" property="Family_FamilyID" />
+        <result column="UserDeleteFlag" jdbcType="INTEGER" property="UserDeleteFlag" />
+    </resultMap>
+
+    <select id="info" resultMap ="BaseResultMap">
+        SELECT * from user
+        WHERE UserName = #{UserName} AND UserPassword = #{UserPassword}
+    </select>
+
+</mapper>
+
+
