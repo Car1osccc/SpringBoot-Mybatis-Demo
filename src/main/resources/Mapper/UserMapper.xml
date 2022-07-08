@@ -3,24 +3,46 @@
 <mapper namespace="com.cyh.smarthome.dal.user.mapper.UserMapper">
 
     <resultMap id="BaseResultMap" type="com.cyh.smarthome.dal.user.model.User">
-        <result column="UserID" jdbcType="VARCHAR" property="userID" />
-        <result column="UserName" jdbcType="VARCHAR" property="userName" />
-        <result column="UserPassword" jdbcType="VARCHAR" property="userPassword" />
-        <result column="UserTelephone" jdbcType="VARCHAR" property="userTelephone" />
-        <result column="UserAddress" jdbcType="VARCHAR" property="userAddress" />
-        <result column="UserGender" jdbcType="VARCHAR" property="userGender" />
-        <result column="Family_FamilyID" jdbcType="VARCHAR" property="familyID" />
-        <result column="UserDeleteFlag" jdbcType="INTEGER" property="userDeleteFlag" />
+        <result column="UserID" jdbcType="INTEGER" property="userID"/>
+        <result column="UserName" jdbcType="VARCHAR" property="userName"/>
+        <result column="UserPassword" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="UserTelephone" jdbcType="VARCHAR" property="userTelephone"/>
+        <result column="UserAddress" jdbcType="VARCHAR" property="userAddress"/>
+        <result column="UserGender" jdbcType="VARCHAR" property="userGender"/>
+        <result column="Family_FamilyID" jdbcType="INTEGER" property="familyID"/>
+        <result column="UserDeleteFlag" jdbcType="INTEGER" property="userDeleteFlag"/>
     </resultMap>
 
-    <select id="selectUserByUserName" resultMap ="BaseResultMap">
-        SELECT * from user
-        WHERE UserName = #{UserName} AND UserPassword = #{UserPassword}
+    <select id="selectUserByUserName" resultType="com.cyh.smarthome.dal.user.model.User">
+        SELECT *
+        from user
+        WHERE UserName = #{userName}
+          AND UserPassword = #{userPassword}
     </select>
-    <select id="selectUserByUserID" resultMap ="BaseResultMap">
-        SELECT * from user
-        WHERE UserID = #{UserID}
+    <select id="selectUserByUserID" resultType="com.cyh.smarthome.dal.user.model.User">
+        SELECT *
+        from user
+        WHERE UserID = #{userID}
     </select>
+    <insert id="register" parameterType="com.cyh.smarthome.dal.user.model.User">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            UserName,
+            UserPassword,
+            UserTelephone,
+            UserAddress,
+            UserGender,
+            Family_FamilyID,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{userName},
+            #{userPassword},
+            #{userTelephone},
+            #{userAddress},
+            #{userGender},
+            #{familyID},
+        </trim>
+    </insert>
 
 </mapper>
 

@@ -9,7 +9,7 @@ public class User {
     /**
      * 用户ID
      */
-    private String userID;
+    private Integer userID;
 
     /**
      * 用户名
@@ -39,7 +39,7 @@ public class User {
 	/**
 	 * 所在家庭ID
 	 */
-    private String familyID;
+    private Integer familyID;
 
 	/**
 	 * 是否删除

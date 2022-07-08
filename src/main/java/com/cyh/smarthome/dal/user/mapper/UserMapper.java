@@ -8,7 +8,8 @@ import com.cyh.smarthome.dal.user.model.User;
  */
 public interface UserMapper {
 
-    User selectUserByUserName(String UserName, String UserPassword);
+    User selectUserByUserName(String userName, String userPassword);
     User selectUserById(String UserID);
+    void register(User user);
 
 }
