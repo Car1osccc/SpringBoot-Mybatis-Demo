@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 @Data
-public class User {
+public class UserDO {
 
     /**
      * 用户ID

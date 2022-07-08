@@ -1,11 +1,11 @@
 package com.cyh.smarthome.core.service.user;
 
-import com.cyh.smarthome.dal.user.model.User;
+import com.cyh.smarthome.dal.user.model.UserDO;
 
 public interface UserService {
 
-    User selectUserByUserName(String userName, String userPassword);
-    User selectUserByUserID(String userID);
-    void userRegister(User user);
+    UserDO selectUserByUserName(String userName, String userPassword);
+    UserDO selectUserByUserID(String userID);
+    void userRegister(UserDO user);
 
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cyh.smarthome.dal.user.mapper.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.cyh.smarthome.dal.user.model.User">
+    <resultMap id="BaseResultMap" type="com.cyh.smarthome.dal.user.model.UserDO">
         <result column="UserID" jdbcType="INTEGER" property="userID"/>
         <result column="UserName" jdbcType="VARCHAR" property="userName"/>
         <result column="UserPassword" jdbcType="VARCHAR" property="userPassword"/>
@@ -13,18 +13,18 @@
         <result column="UserDeleteFlag" jdbcType="INTEGER" property="userDeleteFlag"/>
     </resultMap>
 
-    <select id="selectUserByUserName" resultType="com.cyh.smarthome.dal.user.model.User">
+    <select id="selectUserByUserName" resultType="com.cyh.smarthome.dal.user.model.UserDO">
         SELECT *
         from user
         WHERE UserName = #{userName}
           AND UserPassword = #{userPassword}
     </select>
-    <select id="selectUserByUserID" resultType="com.cyh.smarthome.dal.user.model.User">
+    <select id="selectUserByUserID" resultType="com.cyh.smarthome.dal.user.model.UserDO">
         SELECT *
         from user
         WHERE UserID = #{userID}
     </select>
-    <insert id="register" parameterType="com.cyh.smarthome.dal.user.model.User">
+    <insert id="register" parameterType="com.cyh.smarthome.dal.user.model.UserDO">
         INSERT INTO user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             UserName,

@@ -1,9 +1,8 @@
 package com.cyh.smarthome.web.user;
 
 import com.alibaba.fastjson.JSON;
-import com.cyh.smarthome.core.service.family.FamilyService;
 import com.cyh.smarthome.core.service.user.UserService;
-import com.cyh.smarthome.dal.user.model.User;
+import com.cyh.smarthome.dal.user.model.UserDO;
 import com.cyh.smarthome.web.user.model.userLoginVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class UserController {
 
     @PostMapping("/api/loginCheck")
     public String getUser(@RequestBody userLoginVO userLogin) {
-        User myUser = userService.selectUserByUserName(userLogin.getUserName(),userLogin.getUserPassword());
+        UserDO myUser = userService.selectUserByUserName(userLogin.getUserName(),userLogin.getUserPassword());
         if (myUser == null) {
             return "/error";
         } else
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/api/register")
-    public void userRegister(@RequestBody User user) {
+    public void userRegister(@RequestBody UserDO user) {
         userService.userRegister(user);
     }
 }
