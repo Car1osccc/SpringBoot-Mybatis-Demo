@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.cyh.smarthome;
 
 import com.alibaba.fastjson.JSONObject;
 import org.junit.jupiter.api.Test;

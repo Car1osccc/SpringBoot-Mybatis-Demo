@@ -1,4 +1,4 @@
-package com.example.demo.dal.user.model;
+package com.cyh.smarthome.dal.user.model;
 
 import lombok.Data;
 
@@ -39,7 +39,7 @@ public class User {
 	/**
 	 * 所在家庭ID
 	 */
-    private String family_FamilyID;
+    private String familyID;
 
 	/**
 	 * 是否删除

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.cyh.smarthome;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,7 +9,7 @@ import org.springframework.core.env.Environment;
 import java.util.Arrays;
 
 @Slf4j
-@MapperScan("com.example.demo.dal")
+@MapperScan("com.cyh.smarthome.dal")
 @SpringBootApplication
 public class DemoApplication {
 
