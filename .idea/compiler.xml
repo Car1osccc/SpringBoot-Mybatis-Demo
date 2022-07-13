@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SmartHome-core-service" />
+        <module name="SmartHome-biz-shared" />
+        <module name="demo-biz" />
+        <module name="SmartHome-web" />
+        <module name="SmartHome-common-dal" />
+        <module name="SmartHome-common-util" />
+        <module name="SmartHome-core-model" />
+        <module name="SmartHome-core-service-integration" />
+        <module name="SmartHome-bootstrap" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo-biz" target="17" />
+      <module name="SmartHome" target="17" />
+      <module name="SmartHome-biz" target="17" />
+      <module name="SmartHome-biz-shared" target="17" />
+      <module name="SmartHome-bootstrap" target="17" />
+      <module name="SmartHome-common" target="17" />
+      <module name="SmartHome-common-dal" target="17" />
+      <module name="SmartHome-common-util" target="17" />
+      <module name="SmartHome-core" target="17" />
+      <module name="SmartHome-core-model" target="17" />
+      <module name="SmartHome-core-service" target="17" />
+      <module name="SmartHome-core-service-integration" target="17" />
+      <module name="SmartHome-test" target="17" />
+      <module name="SmartHome-web" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SmartHome" options="-parameters" />
+      <module name="SmartHome-biz" options="-parameters" />
+      <module name="SmartHome-biz-shared" options="-parameters" />
+      <module name="SmartHome-bootstrap" options="-parameters" />
+      <module name="SmartHome-common" options="-parameters" />
+      <module name="SmartHome-common-dal" options="-parameters" />
+      <module name="SmartHome-common-util" options="-parameters" />
+      <module name="SmartHome-core" options="-parameters" />
+      <module name="SmartHome-core-model" options="-parameters" />
+      <module name="SmartHome-core-service" options="-parameters" />
+      <module name="SmartHome-core-service-integration" options="-parameters" />
+      <module name="SmartHome-test" options="-parameters" />
+      <module name="SmartHome-web" options="-parameters" />
+      <module name="demo-biz" options="-parameters" />
+    </option>
+  </component>
+</project>
