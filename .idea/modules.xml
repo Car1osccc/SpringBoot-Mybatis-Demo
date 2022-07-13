@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SmartHome.iml" filepath="$PROJECT_DIR$/SmartHome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-biz/SmartHome-biz.iml" filepath="$PROJECT_DIR$/SmartHome-biz/SmartHome-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-biz/SmartHome-biz-shared/SmartHome-biz-shared.iml" filepath="$PROJECT_DIR$/SmartHome-biz/SmartHome-biz-shared/SmartHome-biz-shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-bootstrap/SmartHome-bootstrap.iml" filepath="$PROJECT_DIR$/SmartHome-bootstrap/SmartHome-bootstrap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-common/SmartHome-common.iml" filepath="$PROJECT_DIR$/SmartHome-common/SmartHome-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-common/SmartHome-common-dal/SmartHome-common-dal.iml" filepath="$PROJECT_DIR$/SmartHome-common/SmartHome-common-dal/SmartHome-common-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-common/SmartHome-common-util/SmartHome-common-util.iml" filepath="$PROJECT_DIR$/SmartHome-common/SmartHome-common-util/SmartHome-common-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-core/SmartHome-core.iml" filepath="$PROJECT_DIR$/SmartHome-core/SmartHome-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-core/SmartHome-core-model/SmartHome-core-model.iml" filepath="$PROJECT_DIR$/SmartHome-core/SmartHome-core-model/SmartHome-core-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-core/SmartHome-core-service/SmartHome-core-service.iml" filepath="$PROJECT_DIR$/SmartHome-core/SmartHome-core-service/SmartHome-core-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartHome-web/SmartHome-web.iml" filepath="$PROJECT_DIR$/SmartHome-web/SmartHome-web.iml" />
+    </modules>
+  </component>
+</project>

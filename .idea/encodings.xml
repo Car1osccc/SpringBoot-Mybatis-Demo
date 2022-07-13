@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/SmartHome-biz/SmartHome-biz-shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-bootstrap/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-common-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-common/SmartHome-common-dal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-common/SmartHome-common-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-core/SmartHome-core-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-core/SmartHome-core-service-integration/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-core/SmartHome-core-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SmartHome-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
