@@ -56,5 +56,10 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:8.0.29" level="project" />
     <orderEntry type="module" module-name="SmartHome-core-model" />
     <orderEntry type="module" module-name="SmartHome-common-util" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.3" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.1.34" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
   </component>
 </module>

@@ -8,10 +8,14 @@ import com.example.smarthomecoreservice.user.UserService;
 import com.example.smarthomeweb.user.mapping.UserMapping;
 import com.example.smarthomeweb.user.request.UserLoginRequest;
 import com.example.smarthomeweb.user.request.UserRegisterRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @Author: Yihan Chen
@@ -19,7 +23,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Resource
@@ -35,10 +39,19 @@ public class UserController {
             return "登陆成功！您的用户信息是:\n" + JSON.toJSONString(myUser);
     }
 
+    @PostMapping("/checkLoginToken")
+    public String checkLoginToken(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, NoSuchAlgorithmException {
+        UserDO user = userService.getUserInfo(request);
+        if (user == null){
+            return "检测到非法Token";
+        }
+        userService.setNewToken(user,request,response);
+        return user.toString();
+    }
+
     @PostMapping("/register")
     public String userRegister(@RequestBody UserRegisterRequest user) {
-        UserDO userDO = UserMapping.convert(user);
-        Integer registerStatus = userService.userRegister(userDO);
+        Integer registerStatus = userService.userRegister(UserMapping.convert(user));
         if (registerStatus == RegisterStatusEnum.TELEPHONE_INVALID.ordinal()) {
             return "输入电话号码格式有误，请重新输入";
         } else if (registerStatus == RegisterStatusEnum.USERNAME_INVALID.ordinal()) {
@@ -51,7 +64,9 @@ public class UserController {
     public String findPassword(@RequestParam String userName, @RequestParam String userTelephone) {
         if (userService.selectUserByUserNameAndTel(userName, userTelephone) == null) {
             return "你输入的用户名或手机号有误，请重新输入";
-        } else return "请更改密码";
+        } else {
+            return "请更改密码";
+        }
 
     }
 }

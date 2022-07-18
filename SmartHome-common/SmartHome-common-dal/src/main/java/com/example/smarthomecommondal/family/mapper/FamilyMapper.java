@@ -1,5 +1,6 @@
 package com.example.smarthomecommondal.family.mapper;
 
+import com.example.smarthomecommondal.family.model.FamilyDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,5 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FamilyMapper {
     Integer getFamilyIdByAddress(String familyAddress);
-    void createNewFamily(String familyTelephone,String familyAddress);
+    void createNewFamily(FamilyDO family);
+    FamilyDO getFamilyById(Integer familyID);
 }

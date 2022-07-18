@@ -1,13 +1,14 @@
 package com.example.smarthomeweb;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import java.util.Date;
+
 class SmartHomeWebApplicationTests {
 
     @Test
-    void contextLoads() {
+    void timeTest() {
+        System.out.println(4 & 3);
     }
 
 }

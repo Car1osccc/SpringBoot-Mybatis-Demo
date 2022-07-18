@@ -2,6 +2,8 @@ package com.example.smarthomecommondal.user.model;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 
 @Data
 public class UserDO {
@@ -42,8 +44,14 @@ public class UserDO {
     private Integer familyID;
 
 	/**
+	 * 用户注册时间
+	 */
+	private Timestamp userRegisterTime;
+
+	/**
 	 * 是否删除
 	 */
     private Integer userDeleteFlag;
+
 
 }

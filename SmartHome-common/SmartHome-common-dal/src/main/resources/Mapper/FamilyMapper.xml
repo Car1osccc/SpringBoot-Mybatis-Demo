@@ -6,6 +6,7 @@
         <result column="FamilyID" jdbcType="INTEGER" property="familyID"/>
         <result column="FamilyTelephone" jdbcType="VARCHAR" property="familyTelephone"/>
         <result column="FamilyAddress" jdbcType="VARCHAR" property="familyAddress"/>
+        <result column="FamilyRegisterTime" jdbcType="TIMESTAMP" property="familyRegisterTime"/>
         <result column="FamilyDeleteFlag" jdbcType="INTEGER" property="familyDeleteFlag"/>
     </resultMap>
 
@@ -14,16 +15,23 @@
         FROM family
         WHERE FamilyAddress = #{familyAddress}
     </select>
+    <select id="getFamilyById" resultType="com.example.smarthomecommondal.family.model.FamilyDO">
+        SELECT *
+        FROM family
+        WHERE FamilyID = #{familyID}
+    </select>
 
     <insert id="createNewFamily" parameterType="com.example.smarthomecommondal.family.model.FamilyDO">
         INSERT INTO family
         <trim prefix="(" suffix=")" suffixOverrides=",">
             FamilyTelephone,
-            FamilyAddress
+            FamilyAddress,
+            FamilyRegisterTime,
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             #{familyTelephone},
             #{familyAddress},
+            #{familyRegisterTime},
         </trim>
     </insert>
 
