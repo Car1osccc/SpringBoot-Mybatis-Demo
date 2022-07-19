@@ -8,14 +8,17 @@ import com.example.smarthomecoreservice.user.UserService;
 import com.example.smarthomeweb.user.mapping.UserMapping;
 import com.example.smarthomeweb.user.request.UserLoginRequest;
 import com.example.smarthomeweb.user.request.UserRegisterRequest;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.ssodemo.controller.LoginController;
+import com.example.ssodemo.interceptor.LoginContext;
+import com.example.ssodemo.model.UserDetailModel;
+import com.example.ssodemo.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
 
 /**
  * @Author: Yihan Chen
@@ -23,30 +26,48 @@ import java.security.NoSuchAlgorithmException;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/v1/user")
 public class UserController {
 
     @Resource
     private UserService userService;
 
+    @Resource
+    private LoginController loginController;
+
+    @Resource
+    private LoginService loginService;
+
 
     @PostMapping("/loginCheck")
-    public String getUser(@RequestBody UserLoginRequest userLogin) {
-        UserDO myUser = userService.selectUserByUserNameAndPwd(userLogin.getUserName(), userLogin.getUserPassword());
-        if (myUser == null) {
+    public String userLogin(@RequestParam String UserName, @RequestParam String UserPassword, HttpServletRequest request, HttpServletResponse response) {
+        UserDO userDO = userService.selectUserByUserNameAndPwd(UserName, UserPassword);
+        if (userDO == null) {
             return "您的账号或密码错误，请重试";
-        } else
-            return "登陆成功！您的用户信息是:\n" + JSON.toJSONString(myUser);
+        } else {
+            UserDetailModel user = UserMapping.convert(userDO);
+            loginService.setNewToken(user, request, response);
+            return "登陆成功！您的用户信息是:\n" + user;
+        }
     }
 
-    @PostMapping("/checkLoginToken")
-    public String checkLoginToken(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, NoSuchAlgorithmException {
-        UserDO user = userService.getUserInfo(request);
-        if (user == null){
-            return "检测到非法Token";
+    /*
+    @PostMapping("/loginCheck")
+    public String userLogin(@RequestParam String UserName, @RequestParam String UserPassword, HttpServletRequest request, HttpServletResponse response) {
+        UserDO userDO = userService.selectUserByUserNameAndPwd(UserName, UserPassword);
+        if (userDO == null) {
+            return "您的账号或密码错误，请重试";
+        } else {
+            UserDetailModel user = UserMapping.convert(userDO);
+            loginService.setNewToken(user, request, response);
+            return "登陆成功！您的用户信息是:\n" + JSON.toJSONString(user);
         }
-        userService.setNewToken(user,request,response);
-        return user.toString();
+    }
+     */
+
+    @GetMapping("/getUserFromToken")
+    public String getUserFromToken(HttpServletRequest request, HttpServletResponse response) {
+        return new LoginController().getUserFromToken(request, response);
     }
 
     @PostMapping("/register")
@@ -67,6 +88,14 @@ public class UserController {
         } else {
             return "请更改密码";
         }
+    }
+    @RequestMapping("/sendToken")
+    public void sendTokenTest(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        response.sendRedirect(loginController.spellToken(request));
+    }
 
+    @RequestMapping("/test")
+    public LoginContext test() {
+        return loginController.getInfoFromThreadLocal();
     }
 }

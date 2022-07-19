@@ -10,7 +10,7 @@
         <result column="UserAddress" jdbcType="VARCHAR" property="userAddress"/>
         <result column="UserGender" jdbcType="VARCHAR" property="userGender"/>
         <result column="FamilyID" jdbcType="INTEGER" property="familyID"/>
-        <result column="UserRegisterTime" jdbcType="TIMESTAMP" property="userRegisterTime"/>
+        <result column="UserRegisterTime" jdbcType="TIMESTAMP" property="userRegisterTime" />
         <result column="UserDeleteFlag" jdbcType="INTEGER" property="userDeleteFlag"/>
     </resultMap>
 

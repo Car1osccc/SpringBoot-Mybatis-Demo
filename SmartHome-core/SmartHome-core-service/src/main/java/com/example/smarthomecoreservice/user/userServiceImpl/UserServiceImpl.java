@@ -3,12 +3,10 @@ package com.example.smarthomecoreservice.user.userServiceImpl;
 import com.example.smarthomecommondal.user.mapper.UserMapper;
 import com.example.smarthomecommondal.user.model.UserDO;
 import com.example.smarthomecommonutil.FormatVerifyUtil;
-import com.example.smarthomecommonutil.SecurityCookieUtil;
 import com.example.smarthomecommonutil.enums.RegisterStatusEnum;
 import com.example.smarthomecoremodel.user.Param.UserRegisterParam;
 import com.example.smarthomecoreservice.family.FamilyService;
 import com.example.smarthomecoreservice.user.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * @Author: Yihan Chen
@@ -88,32 +85,5 @@ public class UserServiceImpl implements UserService {
         } else if (user.getUserTelephone().equals(userTelephone)) {
             return user;
         } else return null;
-    }
-
-    @Override
-    public UserDO getUserInfo(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userToken") && !cookie.getValue().isEmpty()){
-                    return SecurityCookieUtil.checkToken(cookie.getValue());
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void setNewToken(UserDO user, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, NoSuchAlgorithmException {
-        String newToken = SecurityCookieUtil.generateToken(SecurityCookieUtil.encryptUserInfo(user));
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userToken")){
-                    cookie.setValue(newToken);
-                    response.addCookie(cookie);
-                }
-            }
-        }
     }
 }
