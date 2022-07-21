@@ -10,7 +10,7 @@
         <result column="UserAddress" jdbcType="VARCHAR" property="userAddress"/>
         <result column="UserGender" jdbcType="VARCHAR" property="userGender"/>
         <result column="FamilyID" jdbcType="INTEGER" property="familyID"/>
-        <result column="UserRegisterTime" jdbcType="TIMESTAMP" property="userRegisterTime" />
+        <result column="UserRegisterTime" jdbcType="TIMESTAMP" property="userRegisterTime"/>
         <result column="UserDeleteFlag" jdbcType="INTEGER" property="userDeleteFlag"/>
     </resultMap>
 
@@ -19,7 +19,7 @@
         from user
         WHERE UserName = #{userName}
     </select>
-    <select id="selectUserByUserID" resultType="com.example.smarthomecommondal.user.model.UserDO">
+    <select id="selectUserById" resultType="com.example.smarthomecommondal.user.model.UserDO">
         SELECT *
         from user
         WHERE UserID = #{userID}
@@ -45,7 +45,36 @@
             #{userRegisterTime}
         </trim>
     </insert>
-
+    <update id="update" parameterType="com.example.smarthomecommondal.user.model.UserDO">
+        UPDATE user
+        <set>
+            <if test="userName != null">
+                UserName = #{userName},
+            </if>
+            <if test="userPassword != null">
+                UserPassword = #{userPassword},
+            </if>
+            <if test="userTelephone != null">
+                UserTelephone = #{userTelephone},
+            </if>
+            <if test="userAddress != null">
+                UserAddress = #{userAddress},
+            </if>
+            <if test="userGender != null">
+                UserGender = #{userGender},
+            </if>
+            <if test="familyID != null">
+                FamilyID = #{familyID},
+            </if>
+            <if test="userRegisterTime != null">
+                UserRegisterTime = #{userRegisterTime},
+            </if>
+            <if test="userDeleteFlag != null">
+                UserDeleteFlag = #{userDeleteFlag},
+            </if>
+        </set>
+        WHERE UserID = #{userID}
+    </update>
 </mapper>
 
 

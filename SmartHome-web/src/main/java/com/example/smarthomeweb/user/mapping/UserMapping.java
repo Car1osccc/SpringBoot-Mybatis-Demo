@@ -3,16 +3,14 @@ package com.example.smarthomeweb.user.mapping;
 import com.example.smarthomecommondal.user.model.UserDO;
 import com.example.smarthomecoremodel.user.Param.UserRegisterParam;
 import com.example.smarthomeweb.user.request.UserRegisterRequest;
+import com.example.ssodemo.interceptor.LoginContext;
 import com.example.ssodemo.model.UserDetailModel;
-
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/12 11:35
+ * @author Yihan Chen
+ * @date 2022/7/12 11:35
  */
 public class UserMapping {
     public static UserRegisterParam convert(UserRegisterRequest userRegisterRequest) {
@@ -25,18 +23,25 @@ public class UserMapping {
         userRegisterParam.setUserRegisterTime(Timestamp.valueOf(LocalDateTime.now()));
         return userRegisterParam;
     }
+    public static UserDetailModel convert1(UserDO userDO) {
+        UserDetailModel user = new UserDetailModel();
+        user.setUserID(userDO.getUserID());
+        user.setFamilyID(userDO.getFamilyID());
+        user.setUserName(userDO.getUserName());
+        user.setUserPassword(userDO.getUserPassword());
+        user.setUserTelephone(userDO.getUserTelephone());
+        user.setUserGender(userDO.getUserGender());
+        user.setUserAddress(userDO.getUserAddress());
+        user.setUserRegisterTime(Timestamp.valueOf(LocalDateTime.now()));
+        return user;
+    }
 
-    public static UserDetailModel convert(UserDO userDO) {
-        UserDetailModel userDetailModel = new UserDetailModel();
-        userDetailModel.setUserName(userDO.getUserName());
-        userDetailModel.setUserPassword(userDO.getUserPassword());
-        userDetailModel.setUserTelephone(userDO.getUserTelephone());
-        userDetailModel.setUserGender(userDO.getUserGender());
-        userDetailModel.setUserAddress(userDO.getUserAddress());
-        userDetailModel.setUserRegisterTime(userDO.getUserRegisterTime());
-        userDetailModel.setUserID(userDO.getUserID());
-        userDetailModel.setFamilyID(userDO.getFamilyID());
-        return userDetailModel;
+    public static LoginContext convert(UserDO userDO) {
+        LoginContext context = new LoginContext();
+        context.setUserID(userDO.getUserID());
+        context.setFamilyID(userDO.getFamilyID());
+        context.setUserName(userDO.getUserName());
+        return context;
     }
 
 }

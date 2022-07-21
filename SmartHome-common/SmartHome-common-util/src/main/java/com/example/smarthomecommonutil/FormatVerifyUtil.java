@@ -1,8 +1,8 @@
 package com.example.smarthomecommonutil;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/13 15:26
+ * @author Yihan Chen
+ * @date 2022/7/13 15:26
  */
 public class FormatVerifyUtil {
     public static boolean isEmail(String email) {

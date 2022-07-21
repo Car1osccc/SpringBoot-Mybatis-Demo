@@ -3,8 +3,8 @@ package com.example.smarthomecommondal.device.model;
 import lombok.Data;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/13 14:11
+ * @author Yihan Chen
+ * @date 2022/7/13 14:11
  */
 @Data
 public class DeviceDO {

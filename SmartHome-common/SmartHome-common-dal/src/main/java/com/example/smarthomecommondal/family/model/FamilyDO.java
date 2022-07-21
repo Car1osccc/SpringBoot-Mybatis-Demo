@@ -5,8 +5,8 @@ import lombok.Data;
 import java.sql.Timestamp;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/8 16:00
+ * @author Yihan Chen
+ * @date 2022/7/8 16:00
  */
 @Data
 public class FamilyDO {

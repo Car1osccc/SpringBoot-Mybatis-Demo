@@ -2,11 +2,12 @@ package com.example.smarthomecommondal.user.model;
 
 import lombok.Data;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Date;
 
-
+/**
+ * @author Yihan Chen
+ * @date 2022/7/21 16:47
+ */
 @Data
 public class UserDO {
 

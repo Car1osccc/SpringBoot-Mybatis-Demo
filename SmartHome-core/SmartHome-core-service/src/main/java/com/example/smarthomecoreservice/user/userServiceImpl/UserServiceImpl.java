@@ -11,13 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/6 10:50
+ * @author Yihan Chen
+ * @date 2022/7/6 10:50
  */
 @Slf4j
 @Service
@@ -31,17 +28,19 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDO selectUserByUserNameAndPwd(String userName, String userPassword) {
+    public UserDO checkByUserNameAndPwd(String userName, String userPassword) {
         UserDO user = userMapper.selectUserByUserName(userName);
         if (user == null) {
             return null;
         } else if (user.getUserPassword().equals(userPassword)) {
             return user;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public UserDO selectUserByUserID(String userID) {
+    public UserDO selectUserByUserID(Integer userID) {
         return userMapper.selectUserById(userID);
     }
 
@@ -84,6 +83,18 @@ public class UserServiceImpl implements UserService {
             return null;
         } else if (user.getUserTelephone().equals(userTelephone)) {
             return user;
-        } else return null;
+        } else {
+            return null;
+        }
     }
+
+    @Override
+    public boolean update(UserDO userDO) {
+        if (!FormatVerifyUtil.isMobilePhone(userDO.getUserTelephone())) {
+            return false;
+        }
+        userMapper.update(userDO);
+        return true;
+    }
+
 }

@@ -1,13 +1,11 @@
 package com.example.smarthomecoremodel.user.Param;
 
 import lombok.Data;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/15 09:53
+ * @author Yihan Chen
+ * @date 2022/7/15 09:53
  */
 @Data
 public class UserRegisterParam {

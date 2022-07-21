@@ -1,28 +1,25 @@
 package com.example.smarthomeweb.user;
 
-import com.alibaba.fastjson.JSON;
-
 import com.example.smarthomecommondal.user.model.UserDO;
 import com.example.smarthomecommonutil.enums.RegisterStatusEnum;
 import com.example.smarthomecoreservice.user.UserService;
+import com.example.smarthomecoreserviceintegration.rpc.LoginServiceIntegration;
+import com.example.smarthomeweb.ApiResult;
 import com.example.smarthomeweb.user.mapping.UserMapping;
 import com.example.smarthomeweb.user.request.UserLoginRequest;
 import com.example.smarthomeweb.user.request.UserRegisterRequest;
-import com.example.ssodemo.controller.LoginController;
 import com.example.ssodemo.interceptor.LoginContext;
 import com.example.ssodemo.model.UserDetailModel;
-import com.example.ssodemo.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/5 15:50
+ * @author Yihan Chen
+ * @date 2022/7/5 15:50
  */
 @Slf4j
 @RestController
@@ -33,41 +30,27 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private LoginController loginController;
-
-    @Resource
-    private LoginService loginService;
-
+    private LoginServiceIntegration loginServiceIntegration;
 
     @PostMapping("/loginCheck")
-    public String userLogin(@RequestParam String UserName, @RequestParam String UserPassword, HttpServletRequest request, HttpServletResponse response) {
-        UserDO userDO = userService.selectUserByUserNameAndPwd(UserName, UserPassword);
+    public ApiResult userLogin(@RequestBody UserLoginRequest user,HttpServletResponse response) {
+        UserDO userDO = userService.checkByUserNameAndPwd(user.getUserName(), user.getUserPassword());
         if (userDO == null) {
-            return "您的账号或密码错误，请重试";
+            log.error("用户名:{}, 密码:{}配对错误", user.getUserName(), user.getUserPassword());
+            return ApiResult.error("用户名密码配对错误");
         } else {
-            UserDetailModel user = UserMapping.convert(userDO);
-            loginService.setNewToken(user, request, response);
-            return "登陆成功！您的用户信息是:\n" + user;
+            LoginContext loginContext = UserMapping.convert(userDO);
+            loginServiceIntegration.login(loginContext, response);
+            return ApiResult.ok();
         }
     }
 
-    /*
-    @PostMapping("/loginCheck")
-    public String userLogin(@RequestParam String UserName, @RequestParam String UserPassword, HttpServletRequest request, HttpServletResponse response) {
-        UserDO userDO = userService.selectUserByUserNameAndPwd(UserName, UserPassword);
-        if (userDO == null) {
-            return "您的账号或密码错误，请重试";
-        } else {
-            UserDetailModel user = UserMapping.convert(userDO);
-            loginService.setNewToken(user, request, response);
-            return "登陆成功！您的用户信息是:\n" + JSON.toJSONString(user);
-        }
-    }
-     */
-
-    @GetMapping("/getUserFromToken")
-    public String getUserFromToken(HttpServletRequest request, HttpServletResponse response) {
-        return new LoginController().getUserFromToken(request, response);
+    @RequestMapping("/getInfo")
+    public ApiResult<UserDetailModel> getUserInfo(HttpServletRequest request) {
+        Integer userID = LoginContext.getContext().getUserID();
+        UserDO userDO = userService.selectUserByUserID(userID);
+        UserDetailModel user = UserMapping.convert1(userDO);
+        return ApiResult.ok(user);
     }
 
     @PostMapping("/register")
@@ -81,7 +64,7 @@ public class UserController {
         return "注册成功！现在为您返回登陆界面";
     }
 
-    @RequestMapping("/findPassword ")
+    @RequestMapping("/findPassword")
     public String findPassword(@RequestParam String userName, @RequestParam String userTelephone) {
         if (userService.selectUserByUserNameAndTel(userName, userTelephone) == null) {
             return "你输入的用户名或手机号有误，请重新输入";
@@ -89,13 +72,26 @@ public class UserController {
             return "请更改密码";
         }
     }
-    @RequestMapping("/sendToken")
-    public void sendTokenTest(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        response.sendRedirect(loginController.spellToken(request));
+
+
+    @RequestMapping("/modifyInfo")
+    public ApiResult modifyInfo(@RequestBody UserRegisterRequest user) {
+        UserDO userDO = new UserDO();
+        userDO.setUserID(LoginContext.getContext().getUserID());
+        userDO.setUserName(user.getUserName());
+        userDO.setUserPassword(user.getUserPassword());
+        userDO.setUserAddress(user.getUserAddress());
+        userDO.setUserGender(user.getUserGender());
+        userDO.setUserTelephone(user.getUserTelephone());
+        if (userService.update(userDO)) {
+            return ApiResult.ok();
+        }
+        return ApiResult.error("手机号不符合规范");
     }
 
     @RequestMapping("/test")
     public LoginContext test() {
-        return loginController.getInfoFromThreadLocal();
+        return LoginContext.getContext();
     }
+
 }

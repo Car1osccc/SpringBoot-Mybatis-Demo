@@ -2,7 +2,10 @@ package com.example.smarthomeweb.user.response;
 
 import lombok.Data;
 
-
+/**
+ * @author Yihan Chen
+ * @date 2022/7/21 17:55
+ */
 @Data
 public class UserDetailResponse {
 

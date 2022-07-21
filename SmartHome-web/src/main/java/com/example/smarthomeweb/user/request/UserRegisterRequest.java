@@ -3,8 +3,8 @@ package com.example.smarthomeweb.user.request;
 import lombok.Data;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/8 15:09
+ * @author Yihan Chen
+ * @date 2022/7/8 15:09
  */
 @Data
 public class UserRegisterRequest {
