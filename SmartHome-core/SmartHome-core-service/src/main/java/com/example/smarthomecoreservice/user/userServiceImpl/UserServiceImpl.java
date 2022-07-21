@@ -7,13 +7,11 @@ import com.example.smarthomecommonutil.enums.RegisterStatusEnum;
 import com.example.smarthomecoremodel.user.Param.UserRegisterParam;
 import com.example.smarthomecoreservice.family.FamilyService;
 import com.example.smarthomecoreservice.user.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author: Yihan Chen
@@ -31,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDO selectUserByUserNameAndPwd(String userName, String userPassword) {
+    public UserDO checkByUserNameAndPwd(String userName, String userPassword) {
         UserDO user = userMapper.selectUserByUserName(userName);
         if (user == null) {
             return null;
@@ -74,6 +72,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean userNameAvailable(String userName) {
+        ObjectMapper objectMapper = new ObjectMapper();
         return userMapper.selectUserByUserName(userName) == null;
     }
 
@@ -86,4 +85,5 @@ public class UserServiceImpl implements UserService {
             return user;
         } else return null;
     }
+
 }
